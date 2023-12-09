@@ -1,0 +1,143 @@
+html,
+body {
+  font-family: 'Prima Nova', sans-serif;
+  background: #ecedef;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+.btn {
+  height: 30px;
+  padding: 30px;
+}
+
+.btn:hover {
+  background-color: #3778c2;
+  color: white;
+}
+
+.logo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 120px;
+  margin: 200px 0;
+}
+
+.first-color {
+  color: #434b54;
+}
+
+.second-color {
+  color: #5fb523;
+}
+
+.third-color {
+  color: #3778c2;
+}
+
+.white {
+  color: #fff;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.center {
+  align-items: center;
+  text-align: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.btn-primary {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.full-width {
+  width: 80%;
+  margin: auto;
+}
+
+.form-field {
+  border-top: 0;
+  border-right: 0;
+  border-left: 0;
+  border-bottom: 2px solid #ccd1d7;
+  padding: 25px;
+}
+
+.fuller-width {
+  width: 100%;
+}
+
+.back-div {
+  width: 10%;
+}
+
+.back-icon {
+  width: 30%;
+  padding: 10px;
+}
+
+.top-div {
+  background: #3778c2;
+  margin: 0 auto 20px auto;
+  width: 100%;
+}
+
+.next-btn {
+  border: none;
+  background-color: #3778c2;
+}
+
+.actions {
+  width: 10%;
+}
+
+.white-bck {
+  background-color: #fff;
+  width: 94%;
+  margin: auto;
+  padding: 20px 0;
+}
+
+.self-center {
+  margin: 10px auto;
+}
+
+.color-three {
+  font-weight: 300;
+  font-size: 20px;
+  color: #6e7175;
+  padding: 10px;
+  margin: 0 20px;
+}
+
+.top {
+  margin-top: 20px;
+}
+
+.footer-div {
+  background-color: #5fb523;
+  text-align: center;
+  padding: 30px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.bottom-btn {
+  border: 1px solid white;
+  padding: 20px;
+}

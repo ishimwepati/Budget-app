@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BudgetApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+<link href="
+https://cdn.jsdelivr.net/npm/font-proxima-nova@1.0.1/style.min.css
+" rel="stylesheet">
+ <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=DM+Serif+Display">
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>
