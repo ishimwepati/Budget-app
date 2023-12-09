@@ -1,42 +1,28 @@
 require 'rails_helper'
 
 RSpec.describe Category, type: :model do
-  before :all do
-    Purchase.delete_all
-    Category.delete_all
-    User.delete_all
-
-    @user = User.create(id: 1, name: 'User', surname: 'one', email: 'test@gmail.com', password: '123456')
-    @category = Category.create(id: 1, user: @user, name: 'Category one', icon: 'default-image.jpg')
-    @purchase = Purchase.create(name: 'purchase one', amount: 10, author: @user)
-    @purchase.categories << @category
+  describe 'associations' do
+    it { should belong_to(:user) }
+    it { should have_many(:budget_transactions_categories) }
+    it { should have_many(:budget_transactions).through(:budget_transactions_categories) }
   end
 
-  context '#create valid instance' do
-    it 'Category' do
-      expect(@category).to be_valid
-    end
-
-    it 'not valid if no user association' do
-      category = Category.create(name: 'Category one', icon: 'default-image.jpg')
-      expect(category).not_to be_valid
-    end
+  describe 'validations' do
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:icon) }
   end
 
-  context 'Attribute validations' do
-    it 'name should be present' do
-      category = Category.create(user: @user, icon: 'default-image.jpg')
-      expect(category).not_to be_valid
-    end
+  describe 'total_amount' do
+    it 'calculates the total amount of associated budget transactions' do
+      user = create(:user)
+      category = create(:category, user:)
+      transaction1 = create(:budget_transaction, user:, amount: 100)
+      transaction2 = create(:budget_transaction, user:, amount: 150)
 
-    it 'Category icon should be present' do
-      category = Category.create(user: @user, name: 'Default name')
-      expect(category).not_to be_valid
-    end
+      create(:budget_transactions_category, budget_transaction: transaction1, category:)
+      create(:budget_transactions_category, budget_transaction: transaction2, category:)
 
-    it 'Name should be below 100 chars' do
-      category = Category.create(id: 1, user: @user, name: 'A' * 102, icon: 'default-image.jpg')
-      expect(category).not_to be_valid
+      expect(category.total_amount).to eq(250)
     end
   end
 end

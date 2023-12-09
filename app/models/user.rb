@@ -3,12 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :categories
-  has_many :purchases, foreign_key: 'author_id'
+  has_many :budget_transactions, dependent: :destroy, foreign_key: 'author_id'
+  has_many :categories, dependent: :destroy
 
-  validates :name, presence: true, length: { maximum: 100 }
-
-  def total_budget
-    purchases.sum(:amount)
-  end
+  validates :name, presence: true
+  validates :email, presence: true, uniqueness: true
+  validates :password, presence: true
 end

@@ -1,25 +1,31 @@
-<div class='categories-index verticle-flex-display'>
-  <div class="categories-outer-container">
-      <% @categories.each do |category| %>
-        <div class='category-container verticle-flex-display'>
-          <%= link_to category_purchases_url(category), class: "each-category-item horizontal-flex-display" do %>
-            <div class='img-info horizontal-flex-display'>
-              <%= image_tag(category.icon, alt: 'Category Icon', class: 'category-img') %>
-              <div class='cat-name-at verticle-flex-display'>
-                <p class='category-name'><%= category.name %> </p>
-                <p class='category-at'><%= category.created_at.strftime('%d %b %Y') %></p>
-              </div>
-            </div>
-            <p class='category-amount'>$ <%= category.purchases_sum %></p>
-          <% end %>
-          <div class='category-buttons'>
-            <%= button_to 'UPDATE', edit_category_path(category), method: :get, class: 'update-action' %>
-            <%= button_to 'DELETE', category, method: :delete, class: 'delete-action' %>
-          </div>
-        </div>
-      <% end %>
+<div class="flex center justify-between top-div">
+  <div class="back-div">
+ <%= image_tag('001-hamburger.png', alt: 'Example Image', class:'back-icon') %>
+ </div>
+  <h2 class="white btn-primary">CATEGORIES</h2>
+  <div class="actions ">
+  <% if user_signed_in? %>
+  <%= link_to "Sign out", destroy_user_session_path, class:"white btn-primary", data: { turbo_method: :delete } %>
+<% end %>
   </div>
-  <div class='add-category-outer'>
-    <%= link_to "Add new Category", new_category_path(user_id: current_user), class: "add-category" %>
   </div>
-</div>
+
+
+<% @categories.each do |category| %>
+ <%= link_to category_budget_transactions_path(category) do %>
+<div class="flex center justify-between white-bck self-center">
+  <div class="back-div">
+ <%= image_tag(category.icon, alt: 'Category Icon', class: "back-icon" )%>
+ </div>
+<div class="color-three"><p> <%= category.name %></p></div>
+  <div class="color-three">
+  <p>Total: <%= number_to_currency(category.total_amount, precision: 2, unit: '$') %>
+</p>
+  </div>
+  </div>
+
+  <div>
+  <% end %>
+  <% end %>
+<div class=" footer-div"><div class="full-width bottom-btn"><%= link_to 'Add a new category', new_category_path, class: 'white btn-primary' %></div></div>
+

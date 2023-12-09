@@ -1,0 +1,25 @@
+<!-- app/views/budget_transactions/new.html.erb -->
+
+<%= form_with(model: [@category, @budget_transaction], local: true) do |form| %>
+<div class="flex center justify-between top-div">
+  <div class="back-div">
+  <%= link_to controller: 'budget_transactions', action: 'index' do %>
+ <%= image_tag('002-back.png', alt: 'Example Image', class:'back-icon') %>
+ <% end %>
+ </div>
+  <h2 class="white btn-primary">Add a New Transaction for <%= @category.name %> </h2>
+  <div class="actions ">
+    <%= form.submit 'Save',class: "next-btn white btn-primary" %>
+  </div>
+  </div>
+
+<div class="white-bck">
+<div class="field full-width">
+    <%= form.text_field :name, autofocus: true, autocomplete: "name", class:"form-field fuller-width", placeholder:"Name"%>
+  </div>
+  <div class="field full-width">
+    <%= form.number_field :amount, autofocus: true,  class:"form-field fuller-width", placeholder:"amount"%>
+  </div>
+  </div> 
+<% end %>
+

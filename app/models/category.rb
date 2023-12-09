@@ -1,11 +1,12 @@
 class Category < ApplicationRecord
   belongs_to :user
-  has_and_belongs_to_many :purchases
+  has_many :budget_transactions_categories
+  has_many :budget_transactions, through: :budget_transactions_categories
 
-  validates :name, presence: true, length: { maximum: 100 }, uniqueness: { scope: :user, message: 'Category exists!' }
+  validates :name, presence: true
   validates :icon, presence: true
 
-  def purchases_sum
-    purchases.sum(:amount)
+  def total_amount
+    budget_transactions.sum(:amount)
   end
 end
